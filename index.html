@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shrem Esbri BG Limited — A joint venture developing compressed biogas plants across India.">
+    <title>Shrem Esbri BG Limited | Clean Energy Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-900: #070E22;
+            --navy-800: #0B1638;
+            --green-700: #155E32;
+            --green-600: #1B6B3A;
+            --green-500: #2D9055;
+            --green-400: #3BAD67;
+            --green-300: #6CC78A;
+            --gold: #C8991E;
+            --white: #FFFFFF;
+            --off-white: #F7FAF8;
+            --gray-200: #E5E7EB;
+            --gray-500: #6B7280;
+            --gray-700: #374151;
+            --gray-900: #111827;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--gray-700); background: var(--white); overflow-x: hidden; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+        .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
+
+        .chip-label {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 12px; font-weight: 600; letter-spacing: .12em;
+            text-transform: uppercase; color: var(--green-500); margin-bottom: 14px;
+        }
+        .chip-label::before, .chip-label::after { content:''; display:block; width:22px; height:2px; background:var(--green-500); border-radius:2px; }
+        .chip-label.center { justify-content: center; }
+        .chip-label.light { color: var(--green-300); }
+        .chip-label.light::before, .chip-label.light::after { background: var(--green-300); }
+
+        .h2 { font-size: clamp(28px,4vw,44px); font-weight: 700; line-height: 1.12; letter-spacing: -.02em; color: var(--gray-900); }
+        .h2.white { color: #fff; }
+        .lead { font-size: 17px; color: var(--gray-500); line-height: 1.75; }
+
+        .btn { display:inline-flex; align-items:center; gap:8px; padding:13px 26px; border-radius:50px; font-size:15px; font-weight:600; cursor:pointer; border:none; font-family:inherit; transition:all 200ms ease; }
+        .btn-green { background:var(--green-500); color:#fff; }
+        .btn-green:hover { background:var(--green-600); transform:translateY(-2px); box-shadow:0 8px 24px rgba(45,144,85,.35); }
+        .btn-ghost { background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,.35); }
+        .btn-ghost:hover { border-color:#fff; background:rgba(255,255,255,.07); }
+
+        /* NAV */
+        .nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:18px 0; transition:all 300ms ease; }
+        .nav.scrolled { background:rgba(11,22,56,.96); backdrop-filter:blur(14px); padding:12px 0; box-shadow:0 4px 24px rgba(0,0,0,.25); }
+        .nav-inner { display:flex; align-items:center; justify-content:space-between; }
+        .logo { display:flex; align-items:center; gap:11px; }
+        .logo-mark { width:40px; height:40px; border-radius:10px; flex-shrink:0; background:linear-gradient(135deg,var(--green-500),var(--green-700)); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:#fff; letter-spacing:-.5px; }
+        .logo-name { font-size:15px; font-weight:700; color:#fff; line-height:1.2; }
+        .logo-sub { font-size:10px; color:rgba(255,255,255,.5); letter-spacing:.08em; text-transform:uppercase; }
+        .nav-links { display:flex; align-items:center; gap:32px; }
+        .nav-links a { font-size:14px; font-weight:500; color:rgba(255,255,255,.7); transition:color 200ms; }
+        .nav-links a:hover { color:#fff; }
+        .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+        .hamburger span { display:block; width:24px; height:2px; background:#fff; border-radius:2px; transition:all 250ms; }
+        .mob-nav { display:none; position:fixed; inset:0; background:var(--navy-800); z-index:99; padding:100px 32px 40px; flex-direction:column; gap:4px; }
+        .mob-nav.open { display:flex; }
+        .mob-nav a { font-size:22px; font-weight:600; color:#fff; padding:14px 0; border-bottom:1px solid rgba(255,255,255,.07); }
+
+        /* HERO */
+        .hero { min-height:100vh; background:var(--navy-800); display:flex; align-items:center; position:relative; overflow:hidden; }
+        .blob { position:absolute; border-radius:50%; filter:blur(90px); opacity:.16; animation:float 9s ease-in-out infinite; }
+        .blob-1 { width:640px; height:640px; background:var(--green-500); top:-220px; right:-120px; }
+        .blob-2 { width:420px; height:420px; background:var(--gold); bottom:-120px; left:-60px; animation-delay:-4s; }
+        .blob-3 { width:280px; height:280px; background:var(--green-700); top:55%; left:45%; animation-delay:-7s; }
+        @keyframes float { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(18px,-28px) scale(1.05)} 66%{transform:translate(-14px,18px) scale(.96)} }
+        .hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:64px 64px; }
+        .hero-glow { position:absolute; inset:0; background:radial-gradient(ellipse at 72% 28%,rgba(45,144,85,.14) 0%,transparent 58%),radial-gradient(ellipse at 18% 80%,rgba(200,153,30,.07) 0%,transparent 50%); }
+        .hero-content { position:relative; z-index:1; padding:148px 0 100px; }
+        .hero-badge { display:inline-flex; align-items:center; gap:9px; background:rgba(45,144,85,.13); border:1px solid rgba(45,144,85,.28); border-radius:50px; padding:6px 16px 6px 8px; margin-bottom:30px; }
+        .hero-badge-dot { width:8px; height:8px; background:var(--green-400); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.55;transform:scale(.8)} }
+        .hero-badge-text { font-size:13px; font-weight:500; color:var(--green-300); }
+        .hero-title { font-size:clamp(42px,6.5vw,80px); font-weight:800; line-height:1.06; letter-spacing:-.03em; color:#fff; margin-bottom:22px; }
+        .hero-title .accent { background:linear-gradient(135deg,var(--green-400),var(--green-300)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .hero-sub { font-size:clamp(16px,2vw,19px); color:rgba(255,255,255,.6); line-height:1.75; max-width:560px; margin-bottom:40px; }
+        .hero-actions { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:72px; }
+        .hero-partners { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+        .hp-label { font-size:11px; font-weight:500; color:rgba(255,255,255,.35); letter-spacing:.1em; text-transform:uppercase; }
+        .hp-chip { display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:7px 14px; }
+        .hp-chip-dot { width:6px; height:6px; border-radius:50%; background:var(--green-400); }
+        .hp-chip span { font-size:13px; font-weight:600; color:rgba(255,255,255,.72); }
+        .scroll-hint { position:absolute; bottom:28px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; color:rgba(255,255,255,.3); font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-weight:500; }
+        .scroll-line { width:1px; height:38px; background:linear-gradient(to bottom,rgba(255,255,255,.3),transparent); animation:sline 1.6s ease-in-out infinite; }
+        @keyframes sline { 0%{transform:scaleY(0);transform-origin:top} 49%{transform:scaleY(1);transform-origin:top} 50%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
+
+        /* STATS */
+        .stats { background:var(--navy-900); padding:60px 0; }
+        .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); }
+        .stat { padding:20px 28px; text-align:center; position:relative; }
+        .stat:not(:last-child)::after { content:''; position:absolute; right:0; top:15%; height:70%; width:1px; background:rgba(255,255,255,.07); }
+        .stat-num { font-size:clamp(38px,4.5vw,56px); font-weight:800; color:#fff; line-height:1; letter-spacing:-.03em; margin-bottom:8px; }
+        .stat-num .sfx { color:var(--green-400); }
+        .stat-lbl { font-size:13px; font-weight:500; color:rgba(255,255,255,.4); letter-spacing:.04em; }
+
+        /* ABOUT */
+        .about { padding:104px 0; background:#fff; }
+        .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+        .about-text { font-size:16px; color:var(--gray-700); line-height:1.82; margin-bottom:14px; }
+        .checks { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:28px; }
+        .check { display:flex; align-items:center; gap:10px; font-size:14px; font-weight:500; color:var(--gray-700); }
+        .check-icon { width:24px; height:24px; flex-shrink:0; border-radius:6px; background:rgba(45,144,85,.1); display:flex; align-items:center; justify-content:center; }
+        .check-icon svg { width:13px; height:13px; stroke:var(--green-600); fill:none; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+        .jv-card { background:var(--off-white); border-radius:24px; padding:32px; border:1px solid var(--gray-200); }
+        .jv-card-title { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gray-500); margin-bottom:22px; }
+        .jv-company { display:flex; align-items:center; gap:14px; background:#fff; border-radius:14px; padding:18px 20px; border:1px solid var(--gray-200); box-shadow:0 1px 4px rgba(0,0,0,.06); }
+        .jv-icon { width:46px; height:46px; border-radius:11px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; color:#fff; }
+        .jv-icon.s { background:linear-gradient(135deg,#1A237E,#283593); }
+        .jv-icon.e { background:linear-gradient(135deg,var(--green-600),var(--green-500)); }
+        .jv-cname { font-size:15px; font-weight:700; color:var(--gray-900); }
+        .jv-crole { font-size:13px; color:var(--gray-500); }
+        .jv-divider { display:flex; align-items:center; gap:12px; padding:4px 18px; margin:10px 0; }
+        .jv-line { flex:1; height:1px; background:var(--gray-200); }
+        .jv-badge { background:linear-gradient(135deg,var(--green-500),var(--green-700)); color:#fff; font-size:11px; font-weight:700; padding:4px 13px; border-radius:50px; letter-spacing:.05em; }
+        .jv-result { margin-top:20px; padding:18px 20px; background:linear-gradient(135deg,rgba(27,107,58,.08),rgba(45,144,85,.04)); border-radius:12px; border:1px solid rgba(45,144,85,.15); }
+        .jv-result-name { font-size:13px; font-weight:700; color:var(--green-700); margin-bottom:3px; }
+        .jv-result-desc { font-size:13px; color:var(--gray-500); line-height:1.5; }
+
+        /* SERVICES */
+        .services { padding:104px 0; background:var(--off-white); }
+        .section-header { text-align:center; margin-bottom:60px; }
+        .section-header .lead { max-width:580px; margin:14px auto 0; }
+        .srv-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:22px; }
+        .srv-card { background:#fff; border-radius:22px; padding:38px; border:1px solid var(--gray-200); transition:all 240ms ease; cursor:default; }
+        .srv-card:hover { transform:translateY(-5px); box-shadow:0 16px 48px rgba(0,0,0,.1); border-color:transparent; }
+        .srv-icon { width:54px; height:54px; border-radius:14px; margin-bottom:22px; background:linear-gradient(135deg,var(--green-500),var(--green-700)); display:flex; align-items:center; justify-content:center; }
+        .srv-icon svg { width:26px; height:26px; stroke:#fff; fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+        .srv-name { font-size:19px; font-weight:700; color:var(--gray-900); margin-bottom:10px; }
+        .srv-desc { font-size:15px; color:var(--gray-500); line-height:1.72; }
+        .srv-link { display:inline-flex; align-items:center; gap:6px; margin-top:18px; font-size:13px; font-weight:600; color:var(--green-500); transition:gap 200ms; }
+        .srv-link:hover { gap:10px; }
+        .srv-link svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+
+        /* TEAM */
+        .team { padding:104px 0; background:#fff; }
+        .team-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+        .team-card { background:var(--off-white); border-radius:22px; overflow:hidden; border:1px solid var(--gray-200); transition:all 240ms ease; }
+        .team-card:hover { transform:translateY(-5px); box-shadow:0 16px 48px rgba(0,0,0,.1); }
+        .team-photo { aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-size:38px; font-weight:800; color:#fff; letter-spacing:-1px; }
+        .team-card:nth-child(1) .team-photo { background:linear-gradient(135deg,#1A237E,#303F9F); }
+        .team-card:nth-child(2) .team-photo { background:linear-gradient(135deg,var(--green-700),var(--green-500)); }
+        .team-card:nth-child(3) .team-photo { background:linear-gradient(135deg,#4A148C,#7B1FA2); }
+        .team-card:nth-child(4) .team-photo { background:linear-gradient(135deg,#BF360C,#E64A19); }
+        .team-info { padding:20px; }
+        .team-name { font-size:16px; font-weight:700; color:var(--gray-900); margin-bottom:3px; }
+        .team-role { font-size:13px; color:var(--green-600); font-weight:500; margin-bottom:5px; }
+        .team-co { font-size:12px; color:var(--gray-500); }
+
+        /* CONTACT */
+        .contact { padding:104px 0; background:var(--navy-800); position:relative; overflow:hidden; }
+        .contact::before { content:''; position:absolute; top:-180px; right:-180px; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle,rgba(45,144,85,.1) 0%,transparent 70%); }
+        .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; position:relative; z-index:1; }
+        .contact-desc { font-size:16px; color:rgba(255,255,255,.58); line-height:1.75; margin:14px 0 36px; }
+        .cdetails { display:flex; flex-direction:column; gap:20px; }
+        .cdetail { display:flex; align-items:flex-start; gap:14px; }
+        .cdetail-icon { width:40px; height:40px; flex-shrink:0; background:rgba(45,144,85,.14); border:1px solid rgba(45,144,85,.22); border-radius:10px; display:flex; align-items:center; justify-content:center; }
+        .cdetail-icon svg { width:17px; height:17px; stroke:var(--green-400); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+        .cdetail-lbl { font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:2px; }
+        .cdetail-val { font-size:14px; color:rgba(255,255,255,.8); line-height:1.55; }
+        .contact-form { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.09); border-radius:22px; padding:38px; backdrop-filter:blur(8px); }
+        .form-title { font-size:19px; font-weight:700; color:#fff; margin-bottom:24px; }
+        .fg { margin-bottom:18px; }
+        .fg label { display:block; font-size:12px; font-weight:500; color:rgba(255,255,255,.45); margin-bottom:7px; letter-spacing:.03em; }
+        .fi,.ft { width:100%; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.11); border-radius:10px; padding:13px 15px; font-size:14px; color:#fff; font-family:inherit; outline:none; transition:border-color 200ms; }
+        .fi::placeholder,.ft::placeholder { color:rgba(255,255,255,.22); }
+        .fi:focus,.ft:focus { border-color:var(--green-400); background:rgba(255,255,255,.09); }
+        .ft { resize:vertical; min-height:116px; }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+        .btn-send { width:100%; background:var(--green-500); color:#fff; border:none; padding:15px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; font-family:inherit; transition:all 200ms; display:flex; align-items:center; justify-content:center; gap:8px; }
+        .btn-send:hover { background:var(--green-600); transform:translateY(-2px); }
+        .btn-send svg { width:15px; height:15px; stroke:#fff; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+
+        /* FOOTER */
+        .footer { background:var(--navy-900); padding:52px 0 24px; border-top:1px solid rgba(255,255,255,.05); }
+        .footer-top { display:grid; grid-template-columns:2fr 1fr 1fr; gap:48px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,.05); margin-bottom:24px; }
+        .footer-desc { font-size:14px; color:rgba(255,255,255,.38); line-height:1.75; max-width:280px; margin-top:14px; }
+        .fcol-title { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:14px; }
+        .flinks { display:flex; flex-direction:column; gap:9px; }
+        .flinks a { font-size:14px; color:rgba(255,255,255,.5); transition:color 200ms; }
+        .flinks a:hover { color:#fff; }
+        .footer-bottom { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+        .footer-copy { font-size:13px; color:rgba(255,255,255,.28); }
+        .footer-jv { font-size:12px; color:rgba(255,255,255,.22); }
+        .footer-jv span { color:var(--green-400); }
+
+        /* RESPONSIVE */
+        @media(max-width:1024px){.team-grid{grid-template-columns:repeat(2,1fr)}.about-grid{gap:48px}}
+        @media(max-width:768px){
+            .nav-links,.nav-links+.btn{display:none}
+            .hamburger{display:flex}
+            .about-grid,.contact-grid,.footer-top{grid-template-columns:1fr;gap:40px}
+            .srv-grid{grid-template-columns:1fr}
+            .stats-grid{grid-template-columns:repeat(2,1fr)}
+            .stat:nth-child(2)::after{display:none}
+            .form-row{grid-template-columns:1fr}
+            .checks{grid-template-columns:1fr}
+        }
+        @media(max-width:480px){.team-grid{grid-template-columns:repeat(2,1fr)}.hero-actions{flex-direction:column;align-items:flex-start}}
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <div class="logo-mark">SE</div>
+                <div>
+                    <div class="logo-name">Shrem Esbri BG</div>
+                    <div class="logo-sub">Limited</div>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">What We Do</a></li>
+                <li><a href="#team">Leadership</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-green" style="padding:10px 20px;font-size:14px;">Get In Touch</a>
+            <button class="hamburger" id="hbg" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+<div class="mob-nav" id="mob-nav" role="navigation">
+    <a href="#about"    onclick="closeMob()">About</a>
+    <a href="#services" onclick="closeMob()">What We Do</a>
+    <a href="#team"     onclick="closeMob()">Leadership</a>
+    <a href="#contact"  onclick="closeMob()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="blob blob-1" aria-hidden="true"></div>
+    <div class="blob blob-2" aria-hidden="true"></div>
+    <div class="blob blob-3" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge reveal" aria-label="Joint Venture · Compressed Biogas">
+                <div class="hero-badge-dot" aria-hidden="true"></div>
+                <span class="hero-badge-text">Joint Venture · Compressed Biogas</span>
+            </div>
+            <h1 class="hero-title reveal d1">
+                Powering India's<br>
+                <span class="accent">Green Energy</span><br>
+                Future
+            </h1>
+            <p class="hero-sub reveal d2">
+                A strategic joint venture between Shrem Group and Esbri Tech, developing and operating compressed biogas plants across India for a cleaner, more sustainable tomorrow.
+            </p>
+            <div class="hero-actions reveal d3">
+                <a href="#about" class="btn btn-green">
+                    Discover Our Vision
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#contact" class="btn btn-ghost">Contact Us</a>
+            </div>
+            <div class="hero-partners reveal d4">
+                <span class="hp-label">A joint venture by</span>
+                <div class="hp-chip"><div class="hp-chip-dot" aria-hidden="true"></div><span>Shrem Group</span></div>
+                <div class="hp-chip"><div class="hp-chip-dot" aria-hidden="true"></div><span>Esbri Tech</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats" aria-label="Key figures">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat reveal">
+                <div class="stat-num"><span class="counter" data-target="19">0</span><span class="sfx">+</span></div>
+                <div class="stat-lbl">Project Locations</div>
+            </div>
+            <div class="stat reveal d1">
+                <div class="stat-num"><span class="counter" data-target="10">0</span><span class="sfx">+</span></div>
+                <div class="stat-lbl">Years of Expertise</div>
+            </div>
+            <div class="stat reveal d2">
+                <div class="stat-num"><span class="counter" data-target="500">0</span><span class="sfx"> TPD</span></div>
+                <div class="stat-lbl">Planned CBG Capacity</div>
+            </div>
+            <div class="stat reveal d3">
+                <div class="stat-num"><span class="counter" data-target="5">0</span><span class="sfx">+</span></div>
+                <div class="stat-lbl">States Covered</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="reveal">
+                <div class="chip-label">About Us</div>
+                <h2 class="h2" style="margin-bottom:18px;">Built on Partnership,<br>Driven by Purpose</h2>
+                <p class="about-text">Shrem Esbri BG Limited is a joint venture formed between Shrem Group — a leading investment platform — and Esbri Tech, a Chennai-based EPC specialist with over a decade of proven experience in compressed biogas infrastructure.</p>
+                <p class="about-text">Together, we develop and operate CBG plants across India, transforming agricultural and organic waste into clean, affordable energy. Our combined strengths in institutional finance and engineering excellence position us uniquely in India's rapidly growing green energy sector.</p>
+                <div class="checks">
+                    <div class="check"><div class="check-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>EPC-grade project execution</div>
+                    <div class="check"><div class="check-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>SATAT Scheme aligned</div>
+                    <div class="check"><div class="check-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>Institutional investment backing</div>
+                    <div class="check"><div class="check-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>Pan-India development pipeline</div>
+                </div>
+            </div>
+            <div class="reveal d2">
+                <div class="jv-card">
+                    <div class="jv-card-title">Joint Venture Structure</div>
+                    <div class="jv-company">
+                        <div class="jv-icon s" aria-hidden="true">S</div>
+                        <div>
+                            <div class="jv-cname">Shrem Group</div>
+                            <div class="jv-crole">Investment &amp; Capital Partner</div>
+                        </div>
+                    </div>
+                    <div class="jv-divider" aria-hidden="true">
+                        <div class="jv-line"></div>
+                        <div class="jv-badge">JV</div>
+                        <div class="jv-line"></div>
+                    </div>
+                    <div class="jv-company">
+                        <div class="jv-icon e" aria-hidden="true">E</div>
+                        <div>
+                            <div class="jv-cname">Esbri Tech</div>
+                            <div class="jv-crole">EPC &amp; Technology Partner</div>
+                        </div>
+                    </div>
+                    <div class="jv-result">
+                        <div class="jv-result-name">Shrem Esbri BG Limited</div>
+                        <div class="jv-result-desc">Developing India's compressed biogas infrastructure — together.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="chip-label center">What We Do</div>
+            <h2 class="h2">End-to-End CBG Plant Development</h2>
+            <p class="lead">From site identification to long-term operations, we handle every stage of compressed biogas plant development with precision and expertise.</p>
+        </div>
+        <div class="srv-grid">
+            <div class="srv-card reveal">
+                <div class="srv-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <div class="srv-name">CBG Plant Development</div>
+                <p class="srv-desc">End-to-end development of compressed biogas plants — from feasibility studies and site selection to regulatory approvals and project commissioning.</p>
+                <span class="srv-link">Learn more <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </div>
+            <div class="srv-card reveal d1">
+                <div class="srv-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <div class="srv-name">EPC Execution</div>
+                <p class="srv-desc">Engineering, Procurement and Construction of biogas plants with proven methodologies — backed by Esbri Tech's decade of hands-on EPC expertise with large-scale industrial clients.</p>
+                <span class="srv-link">Learn more <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </div>
+            <div class="srv-card reveal d2">
+                <div class="srv-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                </div>
+                <div class="srv-name">Plant Operations &amp; Maintenance</div>
+                <p class="srv-desc">Long-term operations, performance monitoring, and maintenance of CBG plants to ensure optimal output, safety compliance, and maximum asset longevity.</p>
+                <span class="srv-link">Learn more <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </div>
+            <div class="srv-card reveal d3">
+                <div class="srv-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                </div>
+                <div class="srv-name">Green Energy Supply</div>
+                <p class="srv-desc">Supply of purified, compressed biogas to industrial, commercial, and transport sectors — enabling businesses to meet sustainability targets with reliable renewable energy.</p>
+                <span class="srv-link">Learn more <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="chip-label center">Our Leadership</div>
+            <h2 class="h2">The Minds Behind<br>the Mission</h2>
+            <p class="lead">Experienced leaders from finance, engineering, and energy — united by a shared vision for India's clean energy future.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card reveal">
+                <div class="team-photo" role="img" aria-label="Rajesh Kumar">RK</div>
+                <div class="team-info">
+                    <div class="team-name">Rajesh Kumar</div>
+                    <div class="team-role">Managing Director</div>
+                    <div class="team-co">Shrem Group</div>
+                </div>
+            </div>
+            <div class="team-card reveal d1">
+                <div class="team-photo" role="img" aria-label="Suresh Venkat">SV</div>
+                <div class="team-info">
+                    <div class="team-name">Suresh Venkat</div>
+                    <div class="team-role">Director, Technology</div>
+                    <div class="team-co">Esbri Tech</div>
+                </div>
+            </div>
+            <div class="team-card reveal d2">
+                <div class="team-photo" role="img" aria-label="Priya Mehta">PM</div>
+                <div class="team-info">
+                    <div class="team-name">Priya Mehta</div>
+                    <div class="team-role">Director, Finance</div>
+                    <div class="team-co">Shrem Group</div>
+                </div>
+            </div>
+            <div class="team-card reveal d3">
+                <div class="team-photo" role="img" aria-label="Arun Narayanan">AN</div>
+                <div class="team-info">
+                    <div class="team-name">Arun Narayanan</div>
+                    <div class="team-role">Director, Operations</div>
+                    <div class="team-co">Esbri Tech</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="reveal">
+                <div class="chip-label light">Contact Us</div>
+                <h2 class="h2 white" style="margin-bottom:0;">Let's Build the<br>Future Together</h2>
+                <p class="contact-desc">Whether you're an investor, landowner, or industry partner — we'd love to hear from you.</p>
+                <div class="cdetails">
+                    <div class="cdetail">
+                        <div class="cdetail-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div>
+                            <div class="cdetail-lbl">Registered Office</div>
+                            <div class="cdetail-val">701, One BKC, Bandra Kurla Complex<br>Mumbai, Maharashtra — 400051</div>
+                        </div>
+                    </div>
+                    <div class="cdetail">
+                        <div class="cdetail-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div>
+                            <div class="cdetail-lbl">Email</div>
+                            <div class="cdetail-val">info@shremasbri.com</div>
+                        </div>
+                    </div>
+                    <div class="cdetail">
+                        <div class="cdetail-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.4a16 16 0 0 0 6.07 6.07l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div>
+                            <div class="cdetail-lbl">Phone</div>
+                            <div class="cdetail-val">+91 22 4000 0000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form reveal d2">
+                <div class="form-title">Send us a message</div>
+                <form id="contact-form" novalidate>
+                    <div class="form-row">
+                        <div class="fg">
+                            <label for="fn">Full Name</label>
+                            <input class="fi" id="fn" type="text" placeholder="Your name" required autocomplete="name">
+                        </div>
+                        <div class="fg">
+                            <label for="em">Email</label>
+                            <input class="fi" id="em" type="email" placeholder="you@company.com" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="fg">
+                        <label for="org">Organisation</label>
+                        <input class="fi" id="org" type="text" placeholder="Company or organisation" autocomplete="organization">
+                    </div>
+                    <div class="fg">
+                        <label for="msg">Message</label>
+                        <textarea class="ft" id="msg" placeholder="Tell us how we can help..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-send" id="send-btn">
+                        <span id="send-txt">Send Message</span>
+                        <svg id="send-ico" viewBox="0 0 24 24" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-top">
+            <div>
+                <div class="logo">
+                    <div class="logo-mark" aria-hidden="true">SE</div>
+                    <div>
+                        <div class="logo-name">Shrem Esbri BG</div>
+                        <div class="logo-sub">Limited</div>
+                    </div>
+                </div>
+                <p class="footer-desc">Developing India's compressed biogas infrastructure through a strategic partnership between Shrem Group and Esbri Tech.</p>
+            </div>
+            <div>
+                <div class="fcol-title">Quick Links</div>
+                <nav class="flinks" aria-label="Footer navigation">
+                    <a href="#about">About Us</a>
+                    <a href="#services">What We Do</a>
+                    <a href="#team">Leadership</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+            <div>
+                <div class="fcol-title">Our Partners</div>
+                <div class="flinks">
+                    <a href="https://www.shreminvit.com" target="_blank" rel="noopener noreferrer">Shrem InvIT</a>
+                    <a href="https://asbritech.com" target="_blank" rel="noopener noreferrer">Esbri Tech</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copy">© 2026 Shrem Esbri BG Limited. All rights reserved.</div>
+            <div class="footer-jv">A joint venture of <span>Shrem Group</span> &amp; <span>Esbri Tech</span></div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Navbar scroll
+    const navEl = document.getElementById('nav');
+    window.addEventListener('scroll', () => navEl.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+    // Mobile nav
+    document.getElementById('hbg').addEventListener('click', () => {
+        document.getElementById('mob-nav').classList.toggle('open');
+    });
+    function closeMob() { document.getElementById('mob-nav').classList.remove('open'); }
+
+    // Scroll reveal
+    const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // Trigger hero reveals on load
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible')), 80);
+    });
+
+    // Counter animation
+    function animateCount(el) {
+        const target = Number(el.dataset.target);
+        const dur = 1800;
+        const start = performance.now();
+        function tick(now) {
+            const p = Math.min((now - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = String(Math.round(eased * target));
+            if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    }
+    const countObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); } });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(el => countObs.observe(el));
+
+    // Contact form
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn  = document.getElementById('send-btn');
+        const txt  = document.getElementById('send-txt');
+        const ico  = document.getElementById('send-ico');
+        txt.textContent = '✓ Message Sent!';
+        ico.style.display = 'none';
+        btn.style.background = 'var(--green-700)';
+        setTimeout(() => {
+            txt.textContent = 'Send Message';
+            ico.style.display = '';
+            btn.style.background = '';
+            this.reset();
+        }, 3000);
+    });
+</script>
+</body>
+</html>
