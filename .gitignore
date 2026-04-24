@@ -1,6 +1,8 @@
 .playwright-mcp/
 .wrangler/
-*.png
+full-page.png
+full-revealed.png
+assets/hero-illustration.png
 node_modules/
 .DS_Store
 Thumbs.db

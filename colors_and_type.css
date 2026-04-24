@@ -292,6 +292,38 @@
     color: transparent;
 }
 
+/* ============================================================
+   THEME: WARM CREAM
+   Dark sections shift from cold navy to warm dark brown.
+   Light sections use warm cream instead of pure white.
+   ============================================================ */
+[data-theme="cream"] {
+    --navy-950:  #140800;
+    --navy-900:  #251200;
+    --navy-800:  #352000;
+    --navy-700:  #4A2E00;
+    --navy-600:  #6A4400;
+    --off-white: #FFF5E8;
+    --bg-page:   #FFFBF4;
+    --bg-subtle: #FFF5E8;
+    --bg-dark:   #251200;
+    --bg-dark-2: #140800;
+    --shadow-nav: 0 4px 24px rgba(60,20,0,0.22);
+}
+
+/* ============================================================
+   THEME: BRIGHT SAFFRON
+   Orange/saffron becomes primary action color.
+   Dark sections keep the deep navy; accents shift orange.
+   ============================================================ */
+[data-theme="saffron"] {
+    --action-primary:        var(--orange-500);
+    --action-primary-hover:  var(--orange-600);
+    --shadow-action:         0 8px 24px rgba(245,124,31,0.40);
+    --off-white: #FFF9F0;
+    --bg-subtle: #FFF9F0;
+}
+
 /* On-dark variants */
 .on-dark .t-display-xl,
 .on-dark .t-display-l,
