@@ -64,8 +64,8 @@ ul{list-style:none}
 .hero-badge-dot{width:8px;height:8px;background:var(--green-400);border-radius:50%;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.8)}}
 .hero-badge-text{font-size:13px;font-weight:500;color:var(--green-300)}
-.hero-title{font-size:clamp(44px,6.5vw,84px);font-weight:800;line-height:1.04;letter-spacing:-.03em;color:#fff;margin-bottom:18px}
-.hero-title .accent{background:linear-gradient(135deg,var(--green-400),var(--green-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-title{font-size:clamp(44px,6.5vw,84px);font-weight:800;line-height:1.04;letter-spacing:-.03em;color:#10b981;margin-bottom:18px}
+.hero-title .accent{color:#10b981;-webkit-text-fill-color:#10b981}
 .hero-subtagline{font-size:clamp(18px,2.3vw,22px);color:var(--orange-300);font-weight:500;letter-spacing:-.01em;margin-bottom:36px}
 .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:72px}
 .hero-partners{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
@@ -289,8 +289,8 @@ ul{list-style:none}
 .hero{background:var(--th-hero-base) !important}
 .hero-overlay{background:var(--th-hero-overlay) !important}
 .hero-glow{background:var(--th-hero-glow) !important}
-.hero-title{color:var(--th-hero-title) !important}
-.hero-title .accent{background-image:var(--th-hero-accent) !important;background-clip:text !important;-webkit-background-clip:text !important;-webkit-text-fill-color:transparent !important;color:transparent !important;display:inline}
+.hero-title{color:#10b981 !important;-webkit-text-fill-color:#10b981 !important}
+.hero-title .accent{color:#10b981 !important;-webkit-text-fill-color:#10b981 !important;background-image:none !important;background-clip:unset !important;-webkit-background-clip:unset !important}
 .hero-subtagline{color:var(--th-hero-subtag) !important}
 .hero-badge{background:var(--th-badge-bg) !important;border-color:var(--th-badge-bd) !important}
 .hero-badge-text{color:var(--th-badge-txt) !important}
@@ -427,10 +427,12 @@ body[data-theme="saffron"] .hamburger span{background:#0E1311 !important}
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="container">
+    <div class="section-header reveal" style="margin-bottom:56px;">
+      <div class="eyebrow center">About Us</div>
+      <h2 class="h2" style="text-align:center;">Built on Partnership,<br>Driven by Purpose</h2>
+    </div>
     <div class="about-grid">
       <div class="reveal">
-        <div class="eyebrow">About Us</div>
-        <h2 class="h2" style="margin-bottom:18px;">Built on Partnership,<br>Driven by Purpose</h2>
         <p class="about-text">Shrem Asbri BG Limited (SABL) is a joint venture between Shrem Group and Asbri Energy Pvt. Ltd., focused on developing and operating large-scale Compressed Bio-Gas (CBG) plants across India. The company converts agricultural and organic waste into clean, renewable fuel.</p>
         <p class="about-text">Combining Asbri's technical and EPC expertise with Shrem's financial and infrastructure strengths, SABL operates as an integrated player across the entire CBG value chain.</p>
         <div class="partners-intro">
@@ -449,7 +451,7 @@ body[data-theme="saffron"] .hamburger span{background:#0E1311 !important}
           <div class="check"><div class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Pan-India CBG development</div>
           <div class="check"><div class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Integrated value-chain player</div>
         </div>
-      </div>
+        </div>
       <div class="reveal d2">
         <div class="jv-card">
           <div class="jv-card-title">Joint Venture Structure</div>
@@ -567,9 +569,16 @@ body[data-theme="saffron"] .hamburger span{background:#0E1311 !important}
 <!-- VISION -->
 <section class="lead-quote" id="vision">
   <div class="lq-inner reveal">
-    <div class="lq-mark" aria-hidden="true">&ldquo;</div>
-    <p class="lq-text" id="lq-text">Our Directors bring <span class="hl">vision, experience, and leadership</span> to lead India's clean energy transformation.</p>
-    <div class="lq-attr">Shrem Asbri BG &middot; Our Vision</div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:22px;margin-bottom:48px;">
+      <div style="height:1.5px;width:80px;background:linear-gradient(to left,rgba(255,255,255,.55),rgba(255,255,255,0));border-radius:2px;"></div>
+      <h2 class="h2 white" style="margin:0;white-space:nowrap;">Our Vision</h2>
+      <div style="height:1.5px;width:80px;background:linear-gradient(to right,rgba(255,255,255,.55),rgba(255,255,255,0));border-radius:2px;"></div>
+    </div>
+    <div style="position:relative;padding:24px 48px;">
+      <div class="lq-mark" aria-hidden="true" style="position:absolute;top:-10px;left:0;margin:0;line-height:1;opacity:.45;">&ldquo;</div>
+      <p class="lq-text" id="lq-text">Our directors&rsquo; <span class="hl">vision, experience and leadership</span> to lead India&rsquo;s clean energy transformation</p>
+      <div class="lq-mark" aria-hidden="true" style="position:absolute;bottom:-60px;right:0;margin:0;line-height:1;opacity:.45;">&rdquo;</div>
+    </div>
   </div>
 </section>
 
@@ -712,7 +721,7 @@ body[data-theme="saffron"] .hamburger span{background:#0E1311 !important}
   // --- THEME SYSTEM ---
   var TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
     "theme": "natural",
-    "leadershipQuote": "Our Directors bring **vision, experience, and leadership** to lead India's clean energy transformation.",
+    "leadershipQuote": "Our directors’ **vision, experience and leadership** to lead India’s clean energy transformation",
     "showQuoteSection": true
   }/*EDITMODE-END*/;
 
