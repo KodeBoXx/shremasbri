@@ -138,7 +138,7 @@ ul{list-style:none}
 
 /* ---------- TEAM ---------- */
 .team{padding:104px 0;background:#fff}
-.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:920px;margin:0 auto}
 .team-card{background:var(--off-white);border-radius:22px;overflow:hidden;border:1px solid var(--gray-200);transition:all 240ms ease}
 .team-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-e3)}
 .team-photo{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:800;color:#fff;letter-spacing:-1px;position:relative}
@@ -527,7 +527,9 @@ body[data-theme="saffron"] .hamburger span{background:#0E1311 !important}
     </div>
     <div class="team-grid">
       <div class="team-card reveal">
-        <div class="team-photo">HC</div>
+        <div class="team-photo team-photo--img">
+          <img src="./assets/director-hitesh.png" alt="Hitesh Chhatwal">
+        </div>
         <div class="team-info">
           <div class="team-name">Hitesh Chhatwal</div>
           <div class="team-role">Director</div>
@@ -550,14 +552,6 @@ body[data-theme="saffron"] .hamburger span{background:#0E1311 !important}
         </div>
         <div class="team-info">
           <div class="team-name">G. P. Subash</div>
-          <div class="team-role">Director</div>
-          <div class="team-co">Asbri Energy</div>
-        </div>
-      </div>
-      <div class="team-card reveal d3">
-        <div class="team-photo">BR</div>
-        <div class="team-info">
-          <div class="team-name">Bhuvneshwari Ramadoss</div>
           <div class="team-role">Director</div>
           <div class="team-co">Asbri Energy</div>
         </div>
